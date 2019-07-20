@@ -1,10 +1,18 @@
 from flask import Flask, render_template, request,url_for,session,redirect
+#from . import create_app
 from library import bookshelf
 from library import Book
+from user import User, app, db
+import password as p
+
 import os
-from . import db 
-app= Flask(__name__)
+#app= Flask(__name__)
+#app=create_app()
+db.create_all()
 app.secret_key = os.urandom(16)
+
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 @app.route('/')
 def index():
@@ -30,16 +38,17 @@ def index():
                 books=shelf.index
 
                 #Prints every book inside index. 
-                for isbn in books:
+                """for isbn in books:
                         print(isbn)
-                        print(books[isbn].getAuthor())
+                        print(books[isbn].getAuthor())"""
 
         
                 #print(book.getISBN())
-                print("Hello terminal test")
+                #print("Hello terminal test")
                 return render_template('index.html', books= books,  username= session['username'])
-
-        return redirect(url_for('login'))  
+        else:
+        
+                return redirect(url_for('login'))  
 #Takes isbn and will make the request for the book
 @app.route('/request', methods=['GET', 'POST'])
 def request_class():
@@ -47,14 +56,53 @@ def request_class():
                 isbn = request.args.get('book')
                 print(isbn)
                 return isbn 
-                
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
         if request.method=='POST':
-                session['username'] = request.form['username']
-                #Add db code
-                return redirect(url_for('index'))  
-        return render_template('login.html')
+               # new_user = User(username=request.form['username'],password=request.form['password'])
+        
+
+                if request.form['username']:
+
+                        session['username'] = request.form['username']
+                        #Add db code
+                        new_user = User(username=request.form['username'],password =request.form['password'])
+                        
+                        if not p.password_valid(request.form['password']):
+                                message="use a valid password. They must be 5 - 32 characters long"
+                                return render_template('login.html',message=message) 
+                        #steps: 1. does user exist
+                         #       if yes then authorize password
+                         #       else create user """"
+
+                        if new_user.exist():
+                                print("User exist: " + str(new_user.exist()))
+                                new_user.print_table()
+
+                                if new_user.password_verify():
+                                        return redirect(url_for('index'))  
+                                else:
+                                        message=" check your password. Wrong password was entered"
+                                        return render_template('login.html',message=message)
+                                
+                                #Authenticate password ( compare db and given )
+                                #set authenticated to true if same otherwise set to false
+                        else:
+                                print("Username does not exist")
+                                new_user.print_table()
+                                new_user.insert()
+                        
+                                
+                        return redirect(url_for('index'))  
+                else:
+                        print('No username')
+                        message="input a username"
+                        return render_template('login.html',message=message) 
+        else:
+                
+                message="sign in"
+                return render_template('login.html',message=message)
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
