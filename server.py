@@ -59,16 +59,18 @@ def request_class():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+        """POST runs when a username and password is entered"""
         if request.method=='POST':
-               # new_user = User(username=request.form['username'],password=request.form['password'])
-        
-
+                
+                """Runs if a username has been entered"""
                 if request.form['username']:
 
                         session['username'] = request.form['username']
-                        #Add db code
+                       
+                        #CREATES NEW USER OBJECT
                         new_user = User(username=request.form['username'],password =request.form['password'])
                         
+                        #IF PASSWORD IS INVALID WARNS USER TO TYPE A VALID PASSWORD.
                         if not p.password_valid(request.form['password']):
                                 message="use a valid password. They must be 5 - 32 characters long"
                                 return render_template('login.html',message=message) 
@@ -76,8 +78,10 @@ def login():
                          #       if yes then authorize password
                          #       else create user """"
 
-                        if new_user.exist():
-                                print("User exist: " + str(new_user.exist()))
+                        #CHECK IS USER EXISTS. NOT UNIQUE IF IT IS IN THE DB
+
+                        if new_user.exists(): #RUNS IF USER EXISTS
+                                
                                 new_user.print_table()
 
                                 if new_user.password_verify():

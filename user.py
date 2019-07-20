@@ -38,13 +38,12 @@ class User(db.Model):
         else:
             #set authorized to false
             return False
-            
-        
 
-    def exist(self):
+    def exists(self):
         #print("Username used to compare " + self.username)
         user = User.query.filter_by(username=self.username).first()
         #print("User inside func " + str(user))
+        #IF NONE NO USER WAS FOUND
         if user is None: 
             return False
         else:
@@ -74,19 +73,6 @@ class User(db.Model):
     #def get_id(self):
         #return id of user
 
-    #def is_anonymous(self: (optional)
-        #Returns if user anonymous
-    
-    #def print_table(self):
-        #query=select('*').select_from(db)
-        #result=session.execute(query).fetchall()
-       # query= session.query(User)
-        
-        #for m in query:
-          #  print(m)
-
-    #checks if username exists in database
-   # def is_unique(self): 
 
         
     
