@@ -19,9 +19,9 @@ class User(db.Model):
     username = db.Column(db.String(80),unique=True,nullable=False)
     password = db.Column(db.String,nullable=False)
     authenticated = db.Column(db.Boolean,default = False)
- 
+    
     book_requests = {}
-	book_ledger = {}
+    book_ledger = {}
    
     def __init__(self,username,password,authenticated=True):
         self.username=username
