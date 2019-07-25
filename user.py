@@ -77,6 +77,9 @@ class User(db.Model):
 
     #def get_id(self):
         #return id of user
+	
+   def getUsername(self)
+       return self.username
         
    #Adds a new request to user's dictionary of requests	
    def addBookRequest(self, isbn, rqid)
