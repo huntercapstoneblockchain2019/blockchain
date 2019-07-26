@@ -21,18 +21,3 @@ class RequestSystem:
     def requestBookInfo(self, isbn):
         val = hash(isbn)
         return self.__Books[val]
-
-     def newRequest(self,isbn, user)
-        rqid = self.generateRequestId()
-        book = self.findBook(isbn)
-        book.addRequest(user.getUserName())
-        user.addRequest(isbn, rqid)
-
-
-    def findBook(self,isbn)
-        key = hash(isbn)
-        return self.__Books[key]
-
-    def generateRequestId(self)
-        id= random(3)
-        return id
