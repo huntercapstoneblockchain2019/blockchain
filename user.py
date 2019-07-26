@@ -2,14 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import password as p
 #from blockchain import db
-import BChain
-import Block
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
-
-
+ 
 
 class User(db.Model):
     __tablename__='user'
@@ -20,9 +18,6 @@ class User(db.Model):
     password = db.Column(db.String,nullable=False)
     authenticated = db.Column(db.Boolean,default = False)
     
-    book_requests = {}
-    book_ledger = {}
-   
     def __init__(self,username,password,authenticated=True):
         self.username=username
         self.password=p.hash_password(password)
@@ -78,46 +73,7 @@ class User(db.Model):
     #def get_id(self):
         #return id of user
 	
-   def getUsername(self)
-       return self.username
-        
-   #Adds a new request to user's dictionary of requests	
-   def addBookRequest(self, isbn, rqid)
-       self.book_requests[isbn] = rqid
-	
-   def showRequests(self)
-    '''for key in book_requests'''
-	#NOT IMPLEMENTED
-	
-   #Returns the request id of a given book 	
-   def getRequestId(self, isbn)
-	if isbn in book_requests
-	   return self.book_requests[isbn]
-	else 
-	   print ("No record of request for this book")
-	   return None
-
-	
-   #Used to update user's book_ledger
-   def updateLedger(self, mledger)
-	self.book_ledger = mledger
-	
-   #Returns the book's corresponding block chain
-   def getBookChain(self, isbn)
-       if isbn in book_ledger	
-	  return book_ledger[isbn]
-       else 
-	  print ("Record of book does not exist!")
-	  return None
-	
-   #Given the request id as a parameter and the book's isbn a transaction block 
-   # is created and returned by user 
-   def createTransactionBlock(self, req_id, isbn)
-       blk_chain = self.getBookChain(isbn) # get corresponding blockchain for book with isbn
-       prev_blk = blk_chain.last_block()
-       trans_block = block.Block(prev_blk.getBlockHash(), req_id)
-       return trans_block
-	
+  
 
 
         
