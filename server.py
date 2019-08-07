@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request,url_for,session,redirect
 from flask import send_file
 
-# from . import create_app
+#from . import create_app
 from library import bookshelf
 from library import Book
 from user import User, app, db
@@ -19,7 +19,7 @@ app.secret_key = os.urandom(16)
 
 
 
-
+shelf = bookshelf.Bookshelf()
 @app.route('/')
 def index():
     if 'username' in session:
@@ -33,7 +33,7 @@ def index():
         book3 = Book.Book('The Bad President', ['Donald Trump'], [
             'Impeachment', 'Delusional'], '978-1sdfasdfasdff', 'B0000000003')
 
-        shelf = bookshelf.Bookshelf()
+       
         
         # Adds a Book into the shelf
         shelf.addBook(book1)
@@ -65,7 +65,7 @@ def index():
         
         writeMe = shelf.__str__()
         # open(<filename>, <mode>)
-        saveFile = open('BookLedger.txt', 'w')
+        saveFile = open('MasterLedger.txt', 'w')
         # writes the text contained in the variable writeMe to the file declared above
         saveFile.write(writeMe)
         # Always remember after an operation is completed to close it.
@@ -151,19 +151,26 @@ def logout():
 @app.route('/return-files/')
 def download_files():
     '''Returns User Ledger txt file for download'''
+    writeMe = shelf.__str__()
+    # open(<filename>, <mode>)
+    saveFile = open('UpdateLedger.txt', 'w')
+    # writes the text contained in the variable writeMe to the file declared above
+    saveFile.write(writeMe)
+    # Always remember after an operation is completed to close it.
+    saveFile.close()
+    #return 'Hello World!'
+    return send_file('UpdateLedger.txt')
 
-    # return send_file('', attachment_filename='userledger.txt')
-'''
 @app.route('/messages/')
 def get_messages():
-	message = shelf.retrieveMessage(session['username'])
-	return render_template('usermessage.html', username= session['username'], message=message)
+    message = shelf.retrieveMessage(session['username'])
+    return render_template('usermessage.html', username= session['username'], message=message)
 
 @app.route('/return-requests/')
 def get_requests():
-	Returns User Request txt file for download
-	return send_file('[document with specific user requests]', attachment_filename='user_requests.txt')
-'''
+    user = User.query.filter_by(username=session['username']).first()
+    return render_template('requests.html', username = session['username'], message = user.showRequests())
+
 # ADMIN FUNCTIONS
 @app.route('/protected')
 def regulator():

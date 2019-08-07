@@ -80,34 +80,33 @@ class User(db.Model):
 
 	#Adds a new request to user's dictionary of requests	
 	def addBookRequest(self, isbn, rqid):
-		self.__bookrequests[isbn] = rqid
-		
+		if self.activeRequest(isbn) == False:
+			self.__bookrequests[isbn] = rqid
+			message = "request successfully added"
+		else:
+			message = "request for book already exist"
+		return message		
 		
 	def showRequests(self):
-				print (requests)
-				
-
-	#Returns the request id of a given book 	
+		message =[]
+		for isbn in self.__bookrequests:
+			message.append("book:"+ repr(isbn) +"request id: " + repr(self.__bookrequests[isbn]))
+		return message
+	
 	def getRequestId(self, isbn):
-		with open('requests.txt', r) as doc:
-			for request in doc:
-				info = request.split(':')
-				if info[0] == isbn:
-					return info[1]
-				else: 
-					print ('No request for book with isbn:'	+ isbn + 'found!')			
-					
+		return self.__bookrequests[isbn]
 
-	#Returns the book's corresponding block chain
-	''' USER'S LEDGER STORED IN A TEXT FILE THAT IS A DUPLICATE OF THE 
-		OF THE MASTER LEDGER: BLOCKCHAIN NEEDS TO BE ACCESSED BASED ON HOW THE
-		DATA IS STORED
-	'''
-	'''
-	def getBookChain(self, isbn):
-		with open('ledger.txt', w) as doc 
-		return book_ledger[isbn]
-	'''
+	def activeRequest(self, isbn):
+		if isbn in self.__bookrequests:
+			return True
+		else:
+			return False
+
+					
+					
+	
+	#def getBookChain(self, isbn):
+
 	#Given the request id as a parameter and the book's isbn a transaction block 
 	# is created and returned by user 
 	#def createTransactionBlock(self, req_id, isbn):
