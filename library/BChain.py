@@ -1,4 +1,4 @@
-import Block
+from . import Block
 
 class BlockChain:
     'Class for The BlockChains backbone: a wrapper around a Python List'
