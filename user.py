@@ -80,8 +80,12 @@ class User(db.Model):
 
 	#Adds a new request to user's dictionary of requests	
 	def addBookRequest(self, isbn, rqid):
-		self.__bookrequests[isbn] = rqid
-		
+		if self.activeRequest(isbn) == False:
+			self.__bookrequests[isbn] = rqid
+			message = "request successfully added"
+		else:
+			message = "request for book already exist"
+		return message		
 		
 	def showRequests(self):
 		message =[]
@@ -91,10 +95,18 @@ class User(db.Model):
 	
 	def getRequestId(self, isbn):
 		return self.__bookrequests[isbn]
+
+	def activeRequest(self, isbn):
+		if isbn in self.__bookrequests:
+			return True
+		else:
+			return False
+
 					
 					
 	
 	#def getBookChain(self, isbn):
+
 	#Given the request id as a parameter and the book's isbn a transaction block 
 	# is created and returned by user 
 	#def createTransactionBlock(self, req_id, isbn):
