@@ -43,6 +43,10 @@ class Book:
 		print('Book ISBN:', self.__bookISBN)
 		print('Book UID:', self.__bookUID)
 
+	def getStringBookInformation(self):
+		return ('Book Title:' + self.__bookTitle + '\n' + 'Book Author(s):' + self.__bookAuthor + '\n' + 'Book Genre(s):' + self.__bookGenre + '\n' + 'Book ISBN:' + self.__bookISBN + '\n' + 'Book UID:' + self.__bookUID + '\n')
+		   
+
 	# Returns the Genre
 	def getGenre(self):
 		print(self.__bookGenre)
@@ -61,7 +65,7 @@ class Book:
 
 	# Return the Book's BlockChain Transaction History
 	def getBookBlockChain(self):
-		self.__bookLedger.printChainInfo()
+		return self.__bookLedger.__str__()
 
 	# Returns the Book's ISBNHashed. Currently Using the Local hash function
 	def bookISBNHashed(self):
@@ -80,6 +84,9 @@ class Book:
 			print (req)
 
 	# Allows the object to be turned into a string which we can use for encryption
-
 	def __str__(self):
 		return self.__bookTitle + '-' + self.__bookAuthor + '-' + self.__bookGenre + '-' + self.__bookISBN + '-' + self.__bookUID
+		
+	def addValidBlock(self, BlockExample):
+		self.__bookLedger.addBlock(BlockExample)
+    

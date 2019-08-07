@@ -26,9 +26,19 @@ class BlockChain:
         self.__theChain.append(Block)
 
     # Prints the Content of the entire Chain
-    def printChainInfo(self):
-        for b in self.__theChain:
-            (b.retriveBlockInfo())
+    # Prints the Content of the entire Chain
+    def __str__(self):
+        if self.getBlockCount() == 0:
+            return 'Chain is Empty'
+        else:
+            count = 1
+            s = 'Blockchain / Transaction History\n'
+            for b in self.__theChain:
+                s += 'Block ' + str(count) + ':\n'
+                s += b.retriveBlockInfo()
+                s += '------\n'
+                count += 1
+        return s
     
     # Prints the n last Blocks 
     def printSpecifiedChainInfo(self, N):

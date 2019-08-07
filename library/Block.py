@@ -11,7 +11,7 @@ class Block:
     # Constructor for Block Class
     def __init__(self, prevHash, blockData):
         self.__previousHash = prevHash
-        self.__blockData = blockData
+        self.__blockData = {}
         self.__blockHash = self.setBlockHash256(
             self.__previousHash, str(self.__blockData))
         # TODO: Create a system generated Timestamp based on the linux EPOCH
