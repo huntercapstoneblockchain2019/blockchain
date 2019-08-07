@@ -10,13 +10,14 @@ db = SQLAlchemy(app)
  
 
 class User(db.Model):
-
 	__tablename__='user'
 
 	id = db.Column(db.Integer,primary_key=True)
 	username = db.Column(db.String(80),unique=True,nullable=False)
 	password = db.Column(db.String,nullable=False)
 	authenticated = db.Column(db.Boolean,default = False)
+	
+	__bookrequests={}
 
 	def __init__(self,username,password,authenticated=True):
 		self.username=username
@@ -79,12 +80,10 @@ class User(db.Model):
 
 	#Adds a new request to user's dictionary of requests	
 	def addBookRequest(self, isbn, rqid):
-		with open('requests.txt', w) as doc:
-			doc.write(repr(isbn)+ ':' +repr(rqid))
-
-	#def showRequests(self)
-		with open('requests.txt', r) as doc:
-			for requests in doc:
+		self.__bookrequests[isbn] = rqid
+		
+		
+	def showRequests(self):
 				print (requests)
 				
 
@@ -98,9 +97,6 @@ class User(db.Model):
 				else: 
 					print ('No request for book with isbn:'	+ isbn + 'found!')			
 					
-	#Used to update user's book_ledger
-	def updateLedger(self, mledger):
-		self.book_ledger = mledger
 
 	#Returns the book's corresponding block chain
 	''' USER'S LEDGER STORED IN A TEXT FILE THAT IS A DUPLICATE OF THE 
