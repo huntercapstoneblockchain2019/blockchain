@@ -123,11 +123,9 @@ def logout():
 #USER FUNCTIONS        
 @app.route('/return-files/')
 def download_files():
-        return "Ledger has been updated"
-	
-'''Returns User Ledger txt file for download'''
+	'''Returns User Ledger txt file for download'''
 		#return send_file('', attachment_filename='userledger.txt')
-'''
+
 @app.route('/messages/')
 def get_messages():
 	message = shelf.retrieveMessage(session['username'])
@@ -135,12 +133,9 @@ def get_messages():
 
 @app.route('/return-requests/')
 def get_requests():
-	Returns User Request txt file for download
-	return send_file('[document with specific user requests]', attachment_filename='user_requests.txt')
-'''	
-
-
-
+	user = User.query.filter_by(username=session['username']).first()
+	return render_template('requests.html', username = session['username'], message = user.showRequests())
+	
 
 #ADMIN FUNCTIONS
 @app.route('/protected')
