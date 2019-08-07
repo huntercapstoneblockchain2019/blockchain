@@ -86,7 +86,7 @@ def login():
                         if new_user.exists(): #RUNS IF USER EXISTS
                         	new_user.print_table()
                         	if new_user.password_verify():
-                        		if new_user.getUsername() == 'Regulator':
+                        		if session['username'] == 'Regulator':
                         			return redirect(url_for('regulator'))
                         		else:
                         			return redirect(url_for('index'))
