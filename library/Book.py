@@ -57,12 +57,16 @@ class Book:
 		return hash(self.__bookISBN)
 
 	#adds new request to queue
-	def addRequest(self, username):
-		self.request_queue.put(username)
+	def addRequest(self, user):
+		self.request_queue.put(user)
 
 	#retrieves next request in queue
 	def getNextRequest(self):
 		return self.request_queue.get()
+	
+	def getAllRequests(self):
+		for req in request_queue:
+			print (req)
 
 	# Allows the object to be turned into a string which we can use for encryption
 
