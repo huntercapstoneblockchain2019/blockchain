@@ -21,7 +21,8 @@
 </head>
 <title>Welcome to the Bookshelf</title>
 <body>
-    <h1>Welcome to Bookshelf</h1>
+    <h1>Welcome to Bookshelf {{username}}</h1>
+	
     <p>Please click on the book you would like to request</p>
     <table>
             <tr>
@@ -37,6 +38,14 @@
             </tr>
             {% endfor %}
     </table>
+    <div class="container" align="center">
+    <hr size= "2" color="#dddddd" width="100%" align="center">
+		<a href="/return-files/" target="blank"><button class='btn btn-default'>Update Ledger</button></a>
+		<a href="/return-requests/" target="blank"><button class='btn btn-default'>View Active Requests</button></a>
+		<a href="/messages/" target="blank"><button class='btn btn-default'>Messages</button></a>
+		<a href="/logout" target="blank"><button class='btn btn-default'>Logout</button></a>
+	<hr size= "2" color= "#dddddd" width="100%" align="center">
+	</div>
     
 
 </body>
