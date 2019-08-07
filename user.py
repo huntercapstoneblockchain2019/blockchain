@@ -95,17 +95,18 @@ class User(db.Model):
 	
 	def getRequestId(self, isbn):
 		return self.__bookrequests[isbn]
-	
+
 	def activeRequest(self, isbn):
 		if isbn in self.__bookrequests:
 			return True
 		else:
 			return False
+
 					
 					
 	
 	#def getBookChain(self, isbn):
-	
+
 	#Given the request id as a parameter and the book's isbn a transaction block 
 	# is created and returned by user 
 	#def createTransactionBlock(self, req_id, isbn):
