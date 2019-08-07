@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import password as p
 #from blockchain import db
+from library import bookshelf
+from library import BChain
 
 
 app = Flask(__name__)
@@ -84,17 +86,30 @@ class User(db.Model):
 		
 		
 	def showRequests(self):
-		message =[]
-		for isbn in self.__bookrequests:
-			message.append("book:"+ repr(isbn) +"request id: " + repr(self.__bookrequests[isbn]))
-		return message
-	
+				print (requests)
+				
+
+	#Returns the request id of a given book 	
 	def getRequestId(self, isbn):
-		return self.__bookrequests[isbn]
+		with open('requests.txt', r) as doc:
+			for request in doc:
+				info = request.split(':')
+				if info[0] == isbn:
+					return info[1]
+				else: 
+					print ('No request for book with isbn:'	+ isbn + 'found!')			
 					
-					
-	
-	#def getBookChain(self, isbn):
+
+	#Returns the book's corresponding block chain
+	''' USER'S LEDGER STORED IN A TEXT FILE THAT IS A DUPLICATE OF THE 
+		OF THE MASTER LEDGER: BLOCKCHAIN NEEDS TO BE ACCESSED BASED ON HOW THE
+		DATA IS STORED
+	'''
+	'''
+	def getBookChain(self, isbn):
+		with open('ledger.txt', w) as doc 
+		return book_ledger[isbn]
+	'''
 	#Given the request id as a parameter and the book's isbn a transaction block 
 	# is created and returned by user 
 	#def createTransactionBlock(self, req_id, isbn):
@@ -102,3 +117,39 @@ class User(db.Model):
 		#prev_blk = blk_chain.last_block()
 		#trans_block = block.Block(prev_blk.getBlockHash(), req_id)
 		#return trans_block
+		
+		
+	def createTransaction(self, requestvalue, isbn):
+		book = getBook(isbn)
+		new_block = self.new_transaction(book.request_queue(0),self.username,requestvalue, isbn)
+		
+		book.unconfirmed_transactions.append(self.requestinfo)
+		return new_block
+		
+		
+	 def new_transaction(self, requestor, owner, requestID, bookname):
+    """
+    Creates a new transaction to go into the next mined Block
+    :param sender: Address of the Sender
+    :param recipient: Address of the Recipient
+    :param requestID: ID number given to the
+    :return: The index of the Block that will hold this transaction
+    """
+    self.current_transactions.append({
+    	"Requestor":requestor
+        'Owner': owner
+        'ISBN': isbn,
+        'requestID': requestID,
+    })
+    return BChain.last_block['index'] + 1
+
+
+
+
+
+
+
+
+
+
+

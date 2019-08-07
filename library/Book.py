@@ -23,6 +23,17 @@ class Book:
 			self.__bookGenre = ', '.join(genre)
 		else:
 			self.__bookGenre = genre[0]
+		
+		self.unconfirmed_transactions = []
+        self.BlockChain = []
+        
+        self.requestinfo = {
+            "name": "",
+            "isbn": "",
+            "requestidval": 0
+        }
+	
+			
 
 	# Returns all of the Books Information
 	def getBookInformation(self):

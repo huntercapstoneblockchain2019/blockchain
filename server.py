@@ -86,7 +86,7 @@ def login():
                         if new_user.exists(): #RUNS IF USER EXISTS
                         	new_user.print_table()
                         	if new_user.password_verify():
-                        		if session['username'] == 'Regulator':
+                        		if new_user.getUsername() == 'Regulator':
                         			return redirect(url_for('regulator'))
                         		else:
                         			return redirect(url_for('index'))
@@ -125,7 +125,7 @@ def logout():
 def download_files():
 	'''Returns User Ledger txt file for download'''
 		#return send_file('', attachment_filename='userledger.txt')
-
+'''
 @app.route('/messages/')
 def get_messages():
 	message = shelf.retrieveMessage(session['username'])
@@ -133,10 +133,9 @@ def get_messages():
 
 @app.route('/return-requests/')
 def get_requests():
-	user = User.query.filter_by(username=session['username']).first()
-	return render_template('requests.html', username = session['username'], message = user.showRequests())
-	
-
+	Returns User Request txt file for download
+	return send_file('[document with specific user requests]', attachment_filename='user_requests.txt')
+'''	
 #ADMIN FUNCTIONS
 @app.route('/protected')
 def regulator():
@@ -161,7 +160,6 @@ def publish_ledger():
 @app.route('/view_users/')
 def view_users():
 	return 'View Users'
-	
 
 @app.route('/profile')
 def profile():
