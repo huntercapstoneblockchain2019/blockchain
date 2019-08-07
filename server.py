@@ -123,7 +123,9 @@ def logout():
 #USER FUNCTIONS        
 @app.route('/return-files/')
 def download_files():
-	'''Returns User Ledger txt file for download'''
+        return "Ledger has been updated"
+	
+'''Returns User Ledger txt file for download'''
 		#return send_file('', attachment_filename='userledger.txt')
 '''
 @app.route('/messages/')
@@ -136,6 +138,10 @@ def get_requests():
 	Returns User Request txt file for download
 	return send_file('[document with specific user requests]', attachment_filename='user_requests.txt')
 '''	
+
+
+
+
 #ADMIN FUNCTIONS
 @app.route('/protected')
 def regulator():
