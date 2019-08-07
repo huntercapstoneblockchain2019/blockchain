@@ -1,0 +1,60 @@
+System Master Ledger
+Print Date: 2019-08-07 18:58:11.671640
+
+
+Book 1: 
+Book Title:To Kill A Mockingbird
+Book Author(s):Harper Lee
+Book Genre(s):Novel, Bildungsroman, Southern Gothic, Thriller, Domestic Fiction, Legal Story
+Book ISBN:978-0446310789
+Book UID:B0000000001
+
+Blockchain / Transaction History
+Block 1:
+Previous Hash: 0
+Transaction Data:
+Request ID: 12345
+Lenders ID: User01
+Borrowers ID: User02
+Books ID: 978-0446310789
+Meet Up Location: Brooklyn Bridge Park
+Block Hash:0b996eb5b4977771cd48312dc686f40408522d7f0aff50dbf9e046f282abbf51
+------
+Block 2:
+Previous Hash: 0b996eb5b4977771cd48312dc686f40408522d7f0aff50dbf9e046f282abbf51
+Transaction Data:
+Request ID: 76483
+Lenders ID: User02
+Borrowers ID: User03
+Books ID: 978-0446310789
+Meet Up Location: Hunter College Lunchroom
+Block Hash:cfadae6e93324f38ae49882ff6be4646f966c000689ba70164216a090b218cb5
+------
+
+Book 2: 
+Book Title:The Talisman
+Book Author(s):Stephen King, Peter Straub
+Book Genre(s):Fantasy, Thriller
+Book ISBN:978-1451697216
+Book UID:B0000000002
+
+Blockchain / Transaction History
+Block 1:
+Previous Hash: 0
+Transaction Data:
+Request ID: 0
+Lenders ID: User04
+Borrowers ID: User06
+Books ID: 978-1451697216
+Meet Up Location: Central Park - North Corridor
+Block Hash:de4e420b4e717b168c57c3b225bb05e48396a71132495d1b97474609ea0ff77f
+------
+
+Book 3: 
+Book Title:The Bad President
+Book Author(s):Donald Trump
+Book Genre(s):Impeachment, Delusional
+Book ISBN:978-1sdfasdfasdff
+Book UID:B0000000003
+
+Chain is Empty
