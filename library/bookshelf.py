@@ -35,6 +35,7 @@ class Bookshelf:
     	req_book = self.library[isbn]
     	req_book.addRequest(user)
     	user.addBookRequest(isbn, rid)
+    	user.showRequests()
     	print("Request for book successfully made! Here is your Request ID:" + repr(rid))
     	
     def retrieveMessage(self, username):
