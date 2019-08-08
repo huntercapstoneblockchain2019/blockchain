@@ -47,21 +47,10 @@ class Bookshelf:
         req_book.addRequest(user)
         user.addBookRequest(isbn, rid)
         Regulator.request_id= rid;
-        print(Regulator.request_id)
         location = self.generatelocation()
         new_reg = Regulator.Regulator(rid,user,isbn,location,self.getBook(isbn))
 
-        #new_transaction = Transaction(rid,)
-
         new_reg.createtransactionBlock()
-
-
-
-        #def __init__(self, reqId, oldId, newUserId, bkISBN, location):
-        #transaction = Transaction(rid, )
-
-
-        print(location)
 
         
         print("Request for book successfully made! Here is your Request ID:" + repr(rid))

@@ -48,16 +48,18 @@ class Regulator:
 		
 	def createtransactionBlock(self):
 		blockchain_info = self.book.getBookBlockChain()
-		lastblockOwnner = blockchain_info.last_blockowner()
-		previousHash = blockchain_info.last_block().getPreviousHash()
-		#print(previousHash, "Previous hash")
 
-		#print(lastblockOwnner, "Last Block Owner")
+		if blockchain_info.__str__() == "Chain is Empty":
+			previousHash=0
+			lastblockOwnner = "None"
+			block = Block.Block(previousHash, Transaction.Transaction(self.rid, lastblockOwnner, self.user, self.isbn, self.location))
 
-		block = Block.Block(previousHash, Transaction.Transaction(self.rid, lastblockOwnner, self.user, self.isbn, self.location))
-		blockchain_info.addBlock(block)
+		else:
+			lastblockOwnner = blockchain_info.last_blockowner()
+			previousHash = blockchain_info.last_block().getPreviousHash()
+			block = Block.Block(previousHash, Transaction.Transaction(self.rid, lastblockOwnner, self.user, self.isbn, self.location))
+
 		self.addTransaction(self.isbn, block, self.book)
-
 		print(self.__masterLedger[self.isbn].__str__())
 
-		#transaction = Transaction(rid, user, book.)
+
