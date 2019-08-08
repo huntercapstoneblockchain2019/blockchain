@@ -11,7 +11,7 @@ class Block:
     # Constructor for Block Class
     def __init__(self, prevHash, blockData):
         self.__previousHash = prevHash
-        self.__blockData = {}
+        self.__blockData = blockData
         self.__blockHash = self.setBlockHash256(
             self.__previousHash, str(self.__blockData))
         # TODO: Create a system generated Timestamp based on the linux EPOCH
@@ -43,5 +43,8 @@ class Block:
 
     # Returns all of the Pertinent Information of the Block
     def retriveBlockInfo(self):
-        print('\nPrevious Hash:', self.__previousHash, '\nData:',
-              self.__blockData, '\nBlock Hash:', self.__blockHash, '\n')
+        return('\nPrevious Hash:', self.__previousHash, '\nData:',
+              self.__blockData.transactionDetails(), '\nBlock Hash:', self.__blockHash, '\n').__str__()
+
+    def last_block_Owner(self):
+        return self.__blockData.getNewOwner().__str__()

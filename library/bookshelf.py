@@ -2,6 +2,8 @@ from . import Book
 import user
 from random import randint
 from datetime import datetime
+from . import Regulator
+from . import Transaction
 
 
 class Bookshelf:
@@ -33,11 +35,35 @@ class Bookshelf:
         id = randint(100, 999)
         return id
 
+    def generatelocation(self):
+    	locations = ["booklyn heights", "Jamica Queens", "Grand Central", "Staten island: Clove Lake Park","queens newyork"]
+    	ran = randint(0, 4)
+    	return locations[ran]
+
+
     def newRequest(self, isbn, user):
         rid = self.generateRequestId()
         req_book = self.library[isbn]
         req_book.addRequest(user)
         user.addBookRequest(isbn, rid)
+        Regulator.request_id= rid;
+        print(Regulator.request_id)
+        location = self.generatelocation()
+        new_reg = Regulator.Regulator(rid,user,isbn,location,self.getBook(isbn))
+
+        #new_transaction = Transaction(rid,)
+
+        new_reg.createtransactionBlock()
+
+
+
+        #def __init__(self, reqId, oldId, newUserId, bkISBN, location):
+        #transaction = Transaction(rid, )
+
+
+        print(location)
+
+        
         print("Request for book successfully made! Here is your Request ID:" + repr(rid))
 
     def retrieveMessage(self, username):
@@ -65,6 +91,7 @@ class Bookshelf:
                       repr(isbn) + 'by user:' + repr(requestor))
 
     # Print Each Book in Index
+
     def __str__(self):
         now = datetime.now()
         #print(now)
@@ -73,6 +100,6 @@ class Bookshelf:
         for isbn, books in self.library.items():
             s += 'Book ' + str(count) + ': \n'
             s += books.getStringBookInformation() + '\n'
-            s += books.getBookBlockChain() + '\n'
+        #    s += books.getBookBlockChain() + '\n'
             count = count + 1
         return s

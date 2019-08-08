@@ -25,15 +25,7 @@ class Book:
 			self.__bookGenre = genre[0]
 		
 		self.unconfirmed_transactions = []
-        self.BlockChain = []
-        
-        self.requestinfo = {
-            "name": "",
-            "isbn": "",
-            "requestidval": 0
-        }
-	
-			
+        #self.BlockChain = []
 
 	# Returns all of the Books Information
 	def getBookInformation(self):
@@ -65,7 +57,7 @@ class Book:
 
 	# Return the Book's BlockChain Transaction History
 	def getBookBlockChain(self):
-		return self.__bookLedger.__str__()
+		return self.__bookLedger
 
 	# Returns the Book's ISBNHashed. Currently Using the Local hash function
 	def bookISBNHashed(self):
@@ -86,7 +78,10 @@ class Book:
 	# Allows the object to be turned into a string which we can use for encryption
 	def __str__(self):
 		return self.__bookTitle + '-' + self.__bookAuthor + '-' + self.__bookGenre + '-' + self.__bookISBN + '-' + self.__bookUID
-		
+
 	def addValidBlock(self, BlockExample):
 		self.__bookLedger.addBlock(BlockExample)
-    
+
+	def getlastOwner(self):
+		block = BChain.BlockChain.last_block()
+		block.getOwner()

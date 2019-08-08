@@ -181,7 +181,7 @@ def publish_ledger():
 
 
 @app.route('/view_users/')
-def view_users():`
+def view_users():
 	return 'View Users'
 
 
