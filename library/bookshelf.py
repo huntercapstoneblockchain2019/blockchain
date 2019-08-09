@@ -51,8 +51,12 @@ class Bookshelf:
         new_reg = Regulator.Regulator(rid,user,isbn,location,self.getBook(isbn))
 
         new_reg.createtransactionBlock()
+        #req_book.rest(wow)
 
-        
+        #req_book.addValidBlocks(wow)
+
+
+
         print("Request for book successfully made! Here is your Request ID:" + repr(rid))
 
     def retrieveMessage(self, username):
@@ -89,6 +93,7 @@ class Bookshelf:
         for isbn, books in self.library.items():
             s += 'Book ' + str(count) + ': \n'
             s += books.getStringBookInformation() + '\n'
-        #    s += books.getBookBlockChain() + '\n'
+            s += books.getBookBlockChain().__str__() + '\n'
             count = count + 1
+
         return s

@@ -1,0 +1,21 @@
+<!doctype html>
+</head>
+<title>User Book Requests</title>
+<body>
+    <h1>{{username}}'s Active Requests </h1>
+
+    <div class="container" align="left">
+    	<p>{{message}}</p>
+    	<hr size= "2" color="#dddddd" width="100%" align="center">
+		  <div class="alert">
+    		{% for message in get_flashed_messages() %}
+       			{{ message }}
+    		{%endfor %}
+		  </div>
+
+    <pre>{{ content }}</pre>
+
+		<a href="/" target="blank"><button class='btn btn-default'>Return to Home</button></a>
+		<hr size= "2" color= "#dddddd" width="100%" align="center">
+	</div>
+</body>

@@ -90,7 +90,7 @@ class User(db.Model):
 		return message		
 		
 	def showRequests(self):
-				print (requests)
+				print (self.__bookrequests)
 				
 
 	#Returns the request id of a given book 	

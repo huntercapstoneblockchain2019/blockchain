@@ -34,7 +34,7 @@ class Regulator:
 	'''
 	
 	def addTransaction(self,hisbn, nblock, book):
-		book.addValidBlock(nblock)
+		book.addValidBlocks(nblock)
 		self.__updateLedger(hisbn, book.getBookBlockChain())
 		
 	
@@ -56,10 +56,20 @@ class Regulator:
 
 		else:
 			lastblockOwnner = blockchain_info.last_blockowner()
+			print(lastblockOwnner)
 			previousHash = blockchain_info.last_block().getPreviousHash()
 			block = Block.Block(previousHash, Transaction.Transaction(self.rid, lastblockOwnner, self.user, self.isbn, self.location))
+			#return block
+		self.book.addValidBlocks(block)
+		#self.addTransaction(self.isbn, block, self.book)
+		#print(self.book.getBookBlockChain())
+		#print(self.__masterLedger[self.isbn])
+		#return self.__masterLedger[self.isbn]
 
-		self.addTransaction(self.isbn, block, self.book)
-		print(self.__masterLedger[self.isbn].__str__())
+
+
+	def masterledger(self):
+		print(self.__masterledger)
+
 
 

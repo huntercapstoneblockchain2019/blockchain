@@ -117,5 +117,6 @@ class BlockChain:
     def last_blockowner(self):
         return self.__theChain[self.getBlockCount() - 1].last_block_Owner()
 
-
+    def retriveBlockInfo(self):
+        return Block.Block.retriveBlockInfo(self)
 
