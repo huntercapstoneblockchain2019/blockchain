@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="245e3acb-3d91-48df-b686-97f31122bbbe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MasterLedger.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MasterLedger.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/UpdateLedger.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/UpdateLedger.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="185" column="4" selection-start-line="185" selection-start-column="4" selection-end-line="185" selection-end-column="4" />
+            <state relative-caret-position="-128">
+              <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
               <folding>
                 <element signature="e#0#74#0" expanded="true" />
               </folding>
@@ -24,11 +25,25 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MasterLedger.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UpdateLedger.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/UpdateLedger.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="60">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -79,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/messages.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="82" selection-start-column="82" selection-end-column="82" />
+              <caret column="79" selection-start-column="79" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -217,11 +232,11 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2657512" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18336026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" weight="0.32847896" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49875313" visible="true" weight="0.4808219" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49875313" visible="true" weight="0.29863015" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50124687" side_tool="true" weight="0.42880258" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32739726" />
@@ -413,19 +428,9 @@
     <entry file="file://$PROJECT_DIR$/messages.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="82" selection-start-column="82" selection-end-column="82" />
+          <caret column="79" selection-start-column="79" selection-end-column="79" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MasterLedger.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UpdateLedger.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -436,18 +441,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="185" column="4" selection-start-line="185" selection-start-column="4" selection-end-line="185" selection-end-column="4" />
+        <state relative-caret-position="-128">
+          <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
           <folding>
             <element signature="e#0#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MasterLedger.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UpdateLedger.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/UpdateLedger.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="60">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
         </state>
       </provider>
     </entry>
