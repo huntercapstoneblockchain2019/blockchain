@@ -98,7 +98,7 @@ def request_class():
 
           #  print(writeMe)
             # Always remember after an
-            message = "Your request for" + isbn + "has been successful!"
+            message = "Your request for " + isbn + " has been successful!"
 
             return render_template('usermessage.html', username=session['username'], message=message)
 
