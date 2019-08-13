@@ -183,7 +183,7 @@ def download_files():
     with open("UpdateLedger.txt", "r") as f:
         content = f.read()
 
-    return render_template('UpdateLedger.html', content=content)
+    return render_template('UpdateLedger.html', username=session['username'], content=content)
 
 
 # ADMIN FUNCTIONS
