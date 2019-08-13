@@ -2,6 +2,8 @@ import hashlib
 import queue
 import json
 from . import BChain
+from . import Block
+
 
 
 class Book:
@@ -23,6 +25,9 @@ class Book:
 			self.__bookGenre = ', '.join(genre)
 		else:
 			self.__bookGenre = genre[0]
+		
+		self.unconfirmed_transactions = []
+        #self.BlockChain = []
 
 	# Returns all of the Books Information
 	def getBookInformation(self):
@@ -54,7 +59,7 @@ class Book:
 
 	# Return the Book's BlockChain Transaction History
 	def getBookBlockChain(self):
-		return self.__bookLedger.__str__()
+		return self.__bookLedger
 
 	# Returns the Book's ISBNHashed. Currently Using the Local hash function
 	def bookISBNHashed(self):
@@ -75,7 +80,30 @@ class Book:
 	# Allows the object to be turned into a string which we can use for encryption
 	def __str__(self):
 		return self.__bookTitle + '-' + self.__bookAuthor + '-' + self.__bookGenre + '-' + self.__bookISBN + '-' + self.__bookUID
-		
-	def addValidBlock(self, BlockExample):
+
+	def addValidBlocks(self, BlockExample):
+		#print(BlockExample.__str__().getTra)
+
 		self.__bookLedger.addBlock(BlockExample)
-    
+		print(self.__bookLedger.getBlockCount())
+
+		#print(self.__bookLedger.__str__())
+		#return self.__bookLedger.addBlock(BlockExample)
+
+
+
+	def getlastOwner(self):
+		block = BChain.BlockChain.last_block()
+		block.getOwner()
+
+	def rest(self, blockchain):
+		self.__bookLedger = blockchain
+
+		saveFile = open("Newdata.txt", 'w')
+
+		saveFile.write(blockchain.__str__())
+
+		# writes the text contained in the variable writeMe to the file declared above
+		# Always remember after an operation is completed to close it.
+		saveFile.close()
+

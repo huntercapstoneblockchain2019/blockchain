@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import password as p
 #from blockchain import db
+from library import bookshelf
+from library import BChain
 
 
 app = Flask(__name__)
@@ -88,12 +90,12 @@ class User(db.Model):
 		return message		
 		
 	def showRequests(self):
-		message =[]
-		for isbn in self.__bookrequests:
-			message.append("book:"+ repr(isbn) +"request id: " + repr(self.__bookrequests[isbn]))
-		return message
-	
+				print (self.__bookrequests)
+				
+
+	#Returns the request id of a given book 	
 	def getRequestId(self, isbn):
+
 		return self.__bookrequests[isbn]
 
 	def activeRequest(self, isbn):
@@ -106,7 +108,6 @@ class User(db.Model):
 					
 	
 	#def getBookChain(self, isbn):
-
 	#Given the request id as a parameter and the book's isbn a transaction block 
 	# is created and returned by user 
 	#def createTransactionBlock(self, req_id, isbn):
@@ -114,7 +115,15 @@ class User(db.Model):
 		#prev_blk = blk_chain.last_block()
 		#trans_block = block.Block(prev_blk.getBlockHash(), req_id)
 		#return trans_block
-	
+
+		
+		
+	def createTransaction(self, requestvalue, isbn):
+		book = getBook(isbn)
+		new_block = self.new_transaction(book.request_queue(0),self.username,requestvalue, isbn)
+		
+		book.unconfirmed_transactions.append(self.requestinfo)
+		return new_block
 
 
 

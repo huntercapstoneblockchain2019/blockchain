@@ -1,12 +1,11 @@
 import hashlib
-from . import Transaction
 
 
 class Block:
     'Basic Block for our Blockchain'
     # Basic class attributes of Block
     __previousHash = ''
-    __blockData = ''
+    __blockData = ()
     __blockHash = ''
 
     # Constructor for Block Class
@@ -44,4 +43,8 @@ class Block:
 
     # Returns all of the Pertinent Information of the Block
     def retriveBlockInfo(self):
-        return 'Previous Hash: ' + self.__previousHash + '\n' + 'Transaction Data:\n' + self.__blockData.transactionDetails() + '\nBlock Hash:'+ self.__blockHash + '\n'
+        return('\nPrevious Hash:', self.__previousHash, '\nData:',
+              self.__blockData.transactionDetails(), '\nBlock Hash:', self.__blockHash, '\n').__str__()
+
+    def last_block_Owner(self):
+        return self.__blockData.getNewOwner().__str__()

@@ -8,6 +8,7 @@ from user import User, app, db
 import password as p
 from library import Block
 from library import Transaction
+from library import Regulator
 
 import os
 # app= Flask(__name__)
@@ -24,45 +25,47 @@ shelf = bookshelf.Bookshelf()
 def index():
     if 'username' in session:
 
+        if(bool(shelf.library) == False):
+
         #shelf=Bookshelf()
 
-        book1 = Book.Book('To Kill A Mockingbird', ['Harper Lee'], [
+            book1 = Book.Book('To Kill A Mockingbird', ['Harper Lee'], [
             'Novel', 'Bildungsroman', 'Southern Gothic', 'Thriller', 'Domestic Fiction', 'Legal Story'], '978-0446310789', 'B0000000001')
-        book2 = Book.Book('The Talisman', ['Stephen King', 'Peter Straub'], [
+            book2 = Book.Book('The Talisman', ['Stephen King', 'Peter Straub'], [
             'Fantasy', 'Thriller'], '978-1451697216', 'B0000000002')
-        book3 = Book.Book('The Bad President', ['Donald Trump'], [
+            book3 = Book.Book('The Bad President', ['Donald Trump'], [
             'Impeachment', 'Delusional'], '978-1sdfasdfasdff', 'B0000000003')
 
-       
-        
+
+
         # Adds a Book into the shelf
-        shelf.addBook(book1)
-        shelf.addBook(book2)
-        shelf.addBook(book3)
+            shelf.addBook(book1)
+            shelf.addBook(book2)
+            shelf.addBook(book3)
         # print(shelf.index[book.getISBN()])
 
         # Hard Coded Transactions for Book 1
-        HCT1 = Transaction.Transaction(
-        '12345', 'User01', 'User02', '978-0446310789', 'Brooklyn Bridge Park')
-        HCT2 = Transaction.Transaction(
-        '76483', 'User02', 'User03', '978-0446310789', 'Hunter College Lunchroom')
+            HCT1 = Transaction.Transaction(
+            '12345', 'User01', 'User02', '978-0446310789', 'Brooklyn Bridge Park')
+            HCT2 = Transaction.Transaction(
+            '76483', 'User02', 'User03', '978-0446310789', 'Hunter College Lunchroom')
 
         # Hard Coded Transactions for Book 2
-        HCT3 = Transaction.Transaction(
-        '0', 'User04', 'User06', '978-1451697216', 'Central Park - North Corridor')
+            HCT3 = Transaction.Transaction(
+            '0', 'User04', 'User06', '978-1451697216', 'Central Park - North Corridor')
         # HCT4 = Transaction.Transaction('85274', 'User06', 'User03', '978-1451697216', 'Prospect Park')
 
         # Addition of Hard coded Block Transactions for Book 1
-        GenBlock = Block.Block('0', HCT1)
-        SecondBlock = Block.Block(GenBlock.getBlockHash(), HCT2)
-        GenBlockBook2 = Block.Block('0', HCT3)
+            GenBlock = Block.Block('0', HCT1)
+            SecondBlock = Block.Block(GenBlock.getBlockHash(), HCT2)
+            GenBlockBook2 = Block.Block('0', HCT3)
 
-        book1.addValidBlock(GenBlock)
-        book1.addValidBlock(SecondBlock)
-        book2.addValidBlock(GenBlockBook2)
+            book1.addValidBlocks(GenBlock)
+            book1.addValidBlocks(SecondBlock)
+            book2.addValidBlocks(GenBlockBook2)
 
         books = shelf.library
-        
+
         writeMe = shelf.__str__()
         # open(<filename>, <mode>)
         saveFile = open('MasterLedger.txt', 'w')
@@ -76,20 +79,33 @@ def index():
         return redirect(url_for('login'))
 
 
+
 # Takes isbn and will make the request for the book
 @app.route('/request', methods=['GET', 'POST'])
 def request_class():
-    if request.method == 'GET':
-        isbn = request.args.get('book')
-        user = User.query.filter_by(username=session['username']).first()
-        shelf.newRequest(isbn, user)
-        shelf.createMessage(isbn, 'username', 'owner')
-        message = "Your request for" + isbn + "has been successful!"
-        return render_template('usermessage.html', username=session['username'], message=message)
+    if 'username' in session:
+        if request.method == 'GET':
+            isbn = request.args.get('book')
+            user = User.query.filter_by(username=session['username']).first()
+            wow = shelf.newRequest(isbn, user)
+
+            shelf.createMessage(isbn, 'username', 'owner')
+          #  writeMe = shelf.__str__()
+            # open(<filename>, <mode>)
+         #   saveFile = open('UpdatedLedger.txt', 'w')
+            # writes the text contained in the variable writeMe to the file declared above
+          #  saveFile.write(writeMe)
+
+          #  print(writeMe)
+            # Always remember after an
+            message = "Your request for " + isbn + " has been successful!"
+
+            return render_template('usermessage.html', username=session['username'], message=message)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
     """POST runs when a username and password is entered"""
     if request.method == 'POST':
         """Runs if a username has been entered"""
@@ -148,28 +164,27 @@ def logout():
 
 
 # USER FUNCTIONS
-@app.route('/return-files/')
+@app.route('/r-files/')
 def download_files():
     '''Returns User Ledger txt file for download'''
+    filename = "UpdateLedger.txt"
+    if os.path.exists(filename):
+        os.remove(filename)
     writeMe = shelf.__str__()
     # open(<filename>, <mode>)
     saveFile = open('UpdateLedger.txt', 'w')
     # writes the text contained in the variable writeMe to the file declared above
     saveFile.write(writeMe)
+
+    print(writeMe)
     # Always remember after an operation is completed to close it.
     saveFile.close()
-    #return 'Hello World!'
-    return send_file('UpdateLedger.txt')
+    # return 'Hello World!'
+    with open("UpdateLedger.txt", "r") as f:
+        content = f.read()
 
-@app.route('/messages/')
-def get_messages():
-    message = shelf.retrieveMessage(session['username'])
-    return render_template('usermessage.html', username= session['username'], message=message)
+    return render_template('UpdateLedger.html', username=session['username'], content=content)
 
-@app.route('/return-requests/')
-def get_requests():
-    user = User.query.filter_by(username=session['username']).first()
-    return render_template('requests.html', username = session['username'], message = user.showRequests())
 
 # ADMIN FUNCTIONS
 @app.route('/protected')
@@ -184,11 +199,19 @@ def verify_transactions():
 
 @app.route('/view_transactions/')
 def display_transactions():
+    '''
+    print(Regulator.__masterLedger.__str__())
+    return Regulator.__masterLedger.__str__()
+    '''
     return 'D T'
 
 
 @app.route('/display_ledger/')
 def display_ledger():
+    '''
+    print( Regulator.__masterLedger.__str__())
+    return Regulator.__masterLedger.__str__()
+    '''
     return 'D ledger'
 
 
@@ -199,7 +222,7 @@ def publish_ledger():
 
 @app.route('/view_users/')
 def view_users():
-    return 'View Users'
+	return 'View Users'
 
 
 @app.route('/profile')

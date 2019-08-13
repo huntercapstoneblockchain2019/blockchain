@@ -1,5 +1,5 @@
 System Master Ledger
-Print Date: 2019-08-07 19:31:42.358308
+Print Date: 2019-08-12 21:25:12.929195
 
 
 Book 1: 
@@ -11,25 +11,9 @@ Book UID:B0000000001
 
 Blockchain / Transaction History
 Block 1:
-Previous Hash: 0
-Transaction Data:
-Request ID: 12345
-Lenders ID: User01
-Borrowers ID: User02
-Books ID: 978-0446310789
-Meet Up Location: Brooklyn Bridge Park
-Block Hash:6ee42028c6a7922f24e6d01768ee531a39fc5801b52982591ed58fd8336eff1f
-------
+('\nPrevious Hash:', '0', '\nData:', 'Request ID: 12345\nLenders ID: User01\nBorrowers ID: User02\nBooks ID: 978-0446310789\nMeet Up Location: Brooklyn Bridge Park', '\nBlock Hash:', 'a081f803a637979b41ee31e24fcef6cc04c09ac91a6b7118353a933a019e46af', '\n')------
 Block 2:
-Previous Hash: 6ee42028c6a7922f24e6d01768ee531a39fc5801b52982591ed58fd8336eff1f
-Transaction Data:
-Request ID: 76483
-Lenders ID: User02
-Borrowers ID: User03
-Books ID: 978-0446310789
-Meet Up Location: Hunter College Lunchroom
-Block Hash:677a79b1bb726aa2d015464b7da5ec54ae9a8cc6e97da9336d1ff4722c27ad67
-------
+('\nPrevious Hash:', 'a081f803a637979b41ee31e24fcef6cc04c09ac91a6b7118353a933a019e46af', '\nData:', 'Request ID: 76483\nLenders ID: User02\nBorrowers ID: User03\nBooks ID: 978-0446310789\nMeet Up Location: Hunter College Lunchroom', '\nBlock Hash:', '531d642d8818d1f4791a402c7fd7adafe384a90761389ce328960047cd3656e8', '\n')------
 
 Book 2: 
 Book Title:The Talisman
@@ -40,15 +24,7 @@ Book UID:B0000000002
 
 Blockchain / Transaction History
 Block 1:
-Previous Hash: 0
-Transaction Data:
-Request ID: 0
-Lenders ID: User04
-Borrowers ID: User06
-Books ID: 978-1451697216
-Meet Up Location: Central Park - North Corridor
-Block Hash:edf51104844e2e328b9c736c50d7fe384d25d8aba36f8b52de31639cc6728bf4
-------
+('\nPrevious Hash:', '0', '\nData:', 'Request ID: 0\nLenders ID: User04\nBorrowers ID: User06\nBooks ID: 978-1451697216\nMeet Up Location: Central Park - North Corridor', '\nBlock Hash:', '7f4d02619e68e21b71ef81364f73f0d39304e840cda37d9633a8f77e73ff0c7b', '\n')------
 
 Book 3: 
 Book Title:The Bad President
